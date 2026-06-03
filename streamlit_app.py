@@ -8,7 +8,4 @@ Hello *world!*
 """)
 
 #Testing if data set works
-df.head()
-
-
-
+st.dataframe(df, use_container_width=True)
