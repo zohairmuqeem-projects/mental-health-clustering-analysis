@@ -14,6 +14,6 @@ Global Trends in Mental Health Disorder dataset (2017) sourced from Kaggle/Our W
 ## How to Run
 Visit the live app: [(https://zohairmuqeemproject-unsupervisedlearning.streamlit.app/)]
 
-## Author
-Zohair Muqeem
-Logan Blancett
+## Authors
+- Zohair Muqeem
+- Logan Blancett
