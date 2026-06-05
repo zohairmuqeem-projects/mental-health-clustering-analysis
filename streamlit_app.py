@@ -1214,15 +1214,3 @@ Amit. (n.d.). Mental health depression disorder data [Data set]. data.world. htt
 
 Cosgrove, L. (2025). Addressing the global mental health crisis: How a human rights approach can help end the search for pharmaceutical magic bullets. Health and Human Rights Journal, 27(1). https://pmc.ncbi.nlm.nih.gov/articles/PMC12799051/
 """)
-
-import pandas as pd
-df = pd.read_csv("mental_health_countries.csv")
-
-st.write("""
-# My first app
-Hello *world!*
-""")
-
-#Testing if data set works
-st.dataframe(df, use_container_width=True)
-
