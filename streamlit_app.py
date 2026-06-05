@@ -1,5 +1,4 @@
 import streamlit as st
-<<<<<<< HEAD
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -1215,7 +1214,7 @@ Amit. (n.d.). Mental health depression disorder data [Data set]. data.world. htt
 
 Cosgrove, L. (2025). Addressing the global mental health crisis: How a human rights approach can help end the search for pharmaceutical magic bullets. Health and Human Rights Journal, 27(1). https://pmc.ncbi.nlm.nih.gov/articles/PMC12799051/
 """)
-=======
+
 import pandas as pd
 df = pd.read_csv("mental_health_countries.csv")
 
@@ -1226,4 +1225,4 @@ Hello *world!*
 
 #Testing if data set works
 st.dataframe(df, use_container_width=True)
->>>>>>> 5c9ff4f46d10e9ca5b42b85a317172ff2efb9c6f
+
