@@ -16,4 +16,4 @@ Visit the live app: [(https://zohairmuqeemproject-unsupervisedlearning.streamlit
 
 ## Authors
 - Zohair Muqeem
-- Logan Blancett
+- Logan Blancett (notebook analysis)
