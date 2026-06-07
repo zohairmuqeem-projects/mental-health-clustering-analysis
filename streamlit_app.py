@@ -22,7 +22,7 @@ from sklearn.neighbors import NearestNeighbors
 
 st.write("""
 # Global Mental Health Rates Unsupervised Learning Analysis
-
+Zohair Muqeem, Logan Blancett
 # 1. Introduction
 
 Currently, "One in seven 10-19-year-olds experiences a mental disorder, accounting for 15% of the global burden of disease in this age group … yet these remain largely unrecognized and untreated" (World Health Organization, as cited in Cosgrove, 2025). Even from those diagnosed, we observe an alarming rate of associated mental disorders, and it's important now than ever to develop high-impact strategies that create effective intervention for both those diagnosed and those who may need help.
