@@ -25,11 +25,11 @@ st.write("""
 Zohair Muqeem, Logan Blancett
 # 1. Introduction
 
-Currently, "One in seven 10-19-year-olds experiences a mental disorder, accounting for 15% of the global burden of disease in this age group … yet these remain largely unrecognized and untreated" (World Health Organization, as cited in Cosgrove, 2025). Even from those diagnosed, we observe an alarming rate of associated mental disorders, and it's important now than ever to develop high-impact strategies that create effective intervention for both those diagnosed and those who may need help.
+Currently, "One in seven 10-19-year-olds experiences a mental disorder, accounting for 15% of the global burden of disease in this age group … yet these remain largely unrecognized and untreated" (World Health Organization, as cited in Cosgrove, 2025). Even among those diagnosed, we observe an alarming rate of associated mental disorders, and it is more important now than ever to develop high-impact strategies that create effective intervention for both those diagnosed and those who may need help.
 
 Additionally, The Global Trends in Mental Health Disorder dataset contains information regarding the prevalence of various mental health disorders in countries across the globe. Furthermore, there may be associations within the inherent clusters in the dataset that provide a better understanding of shared mental health profiles between groups of nations. These mental health profiles in the inherent clusters can help describe the varied prevalence of mental health issues, and allow for clustered groups of nations that share similar mental health disorders. This can be especially useful for world health organizations, who can develop specific strategies developed from the cluster analysis that can target similar groups of countries at once. Through identifying these patterns, world health organizations can develop regional task forces that specialize in alleviating specific mental health disorder profiles in a given cluster of countries. Together, the cluster analysis can help optimize resource allocation to assist in treating the mental health crisis, and provide insight into constructing solutions to target and support groups of countries.
 
-While an unsupervised learning analysis is useful, it is also important as well to recognize the possible downsides of our cluster analysis. First, if the algorithm chosen fails to identify an inherent cluster, this can directly lead to neglect of a group of countries as the prevalent mental health disorder is not represented. Further, the group of countries may be lumped in with a more common prevalent disorder, which can push forward underfunding and lack of preventative measures for those select countries. Conversely, if the algorithm "splits" an inherent cluster with very similar mental health profiles, this can ruin the optimization goal for world health organizations as solutions between both clusters overlap, thus raising administrative and policy costs due to redundancy. This is due to the fact that the organization could have created a single unified strategy which solved both clusterings.
+While an unsupervised learning analysis is useful, it is also important to recognize the possible downsides of our cluster analysis. First, if the algorithm chosen fails to identify an inherent cluster, this can directly lead to neglect of a group of countries as the prevalent mental health disorder is not represented. Further, the group of countries may be lumped in with a more common prevalent disorder, which can push forward underfunding and lack of preventative measures for those select countries. Conversely, if the algorithm "splits" an inherent cluster with very similar mental health profiles, this can undermine the optimization goal for world health organizations as solutions between both clusters overlap, thus raising administrative and policy costs due to redundancy. This is due to the fact that the organization could have created a single unified strategy which solved both clusterings.
 
 Together, we can use various clustering techniques to uncover patterns within mental health rates. First, dendrograms can help illustrate hierarchical relationships between nations, and allow researchers to observe how countries slowly come together to form clusters, or how certain countries diverge from main clusters due to a certain mental health disorder. Next, a harder partitioning method such as K-Means can be essential for creating actionable policy. Through direct assignment to a cluster, health organizations can create policies which translate to a direct cluster of countries, which can help reduce policy costs and create direct health initiatives. In addition, K-Nearest Neighbors (KNN) can help identify regions of prevalent mental health disorders, and identify possible noise/outliers of countries which share unique mental health profiles compared to the larger group of countries.
 
@@ -47,13 +47,13 @@ Section 6: In Clusterability and Clustering Structure Questions, we create t-SNE
 
 Section 7: In Clustering Algorithm Selection Motivation, we justify our two clustering algorithms and analyze whether our ideal dataset properties are met.
 
-Section 8: In Clustering and Post-Cluster Analysis (1), We cluster the dataset using K-Means and view performance metrics and analyze the post-clustering performance and corroboration with our research goals.
+Section 8: In Clustering and Post-Cluster Analysis (1), we cluster the dataset using K-Means and view performance metrics and analyze the post-clustering performance and corroboration with our research goals.
 
-Section 9: In Clustering and Post-Cluster Analysis (2), We cluster the dataset using Hierarchical Agglomerative Clustering with Complete Linkage and view performance metrics and analyze the post-clustering performance and corroboration with our research goals.
+Section 9: In Clustering and Post-Cluster Analysis (2), we cluster the dataset using Hierarchical Agglomerative Clustering with Complete Linkage and view performance metrics and analyze the post-clustering performance and corroboration with our research goals.
 
 Section 10: In Discussion, we assess our clustering using metrics to compare and contrast our clustering algorithms and unsupervised learning results.
 
-Section 11: In conclusion, we will summarize our key findings, and give recommendations garnered from our analysis and indicate steps for future implementation beyond the unsupervised learning analysis.
+Section 11: In Conclusion, we will summarize our key findings, and give recommendations garnered from our analysis and indicate steps for future implementation beyond the unsupervised learning analysis.
 """)
 
 
@@ -62,7 +62,7 @@ Section 11: In conclusion, we will summarize our key findings, and give recommen
 st.write("""
 # 2. Dataset Discussion
 
-The data for the analysis was retrieved via Kaggle from user Amit. In our analysis, we specifically utilized a subset of the "Uncover Global Trends in Mental Health Disorder" dataset which is restricted to the year 2017. While sourced through Kaggle, the original dataset Our World in Data is compiled from a separate source and associated blog. Links below have been provided to the Kaggle Source, Primary Source, and Amit's data.world profile.
+The data for the analysis was retrieved via Kaggle from user Amit. In our analysis, we specifically utilized a subset of the "Uncover Global Trends in Mental Health Disorder" dataset which is restricted to the year 2017. While sourced through Kaggle, the original dataset from Our World in Data is compiled from a separate source and associated blog. Links below have been provided to the Kaggle Source, Primary Source, and Amit's data.world profile.
 
 The following links were accessed and the associated dataset was downloaded on May 12th, 2026.
 
@@ -87,9 +87,9 @@ df = pd.read_csv('mental_health_countries.csv')
 st.dataframe(df, use_container_width=True)
 
 st.write("""
-Before dataset cleaning and exploration, the dataset contains 195 rows and 9 columns. The dataset's observations according to Our World in Data are sourced from Hospitals across the globe, but may not include clinical trials. Each row or observation in the dataset describes a country, its region, and respective diagnosed mental health disorder rates in terms of the general population of each country.
+Before dataset cleaning and exploration, the dataset contains 195 rows and 9 columns. The dataset's observations according to Our World in Data are sourced from hospitals across the globe, but may not include clinical trials. Each row or observation in the dataset describes a country, its region, and respective diagnosed mental health disorder rates in terms of the general population of each country.
 
-In our analysis, we have already retrieved the dataset with the following selected variables: Country, Region, Schizophrenia (%),  Bipolar disorder (%), Eating disorders (%), Anxiety disorders (%), Drug use disorders (%), Depression (%), and Alcohol use disorders (%). Importantly, within the dataset sourced from kaggle and Our World in Data, the following differences have been observed. In our analysis, the column titled "index" which was present in the csv is not a named column and has been suppressed. Additionally, the original dataset contained additional columns which were removed as they were deemed unnecessary for the analysis. As per the Year Filter mentioned in Section 3.3, the year column was dropped as data was restricted to 2017.
+In our analysis, we have already retrieved the dataset with the following selected variables: Country, Region, Schizophrenia (%),  Bipolar disorder (%), Eating disorders (%), Anxiety disorders (%), Drug use disorders (%), Depression (%), and Alcohol use disorders (%). Importantly, within the dataset sourced from Kaggle and Our World in Data, the following differences have been observed. In our analysis, the column titled "index" which was present in the csv is not a named column and has been suppressed. Additionally, the original dataset contained additional columns which were removed as they were deemed unnecessary for the analysis. As per the Year Filter mentioned in Section 3.3, the year column was dropped as data was restricted to 2017.
 """)
 
 
@@ -172,7 +172,7 @@ st.code(code, language="python")
 fig = sns.pairplot(df_model)
 st.pyplot(fig)
 
-st.write("For every pair of numerical explanatory variables, we observe potential outliers in the scatterplots. These points deviate away from the main cluster greatly, and don't attach separately to another cluster.")
+st.write("For every pair of numerical explanatory variables, we observe potential outliers in the scatterplots. These points deviate greatly from the main cluster and do not attach separately to another cluster.")
 
 st.write("KNN Distance Plot")
 
@@ -231,7 +231,7 @@ Through our single linkage dendrogram, we observe the presence of two outliers (
 
 ### 3.1 Outlier Consideration
 
-In the context of improving mental health awareness, we believe that it is best to keep the identified outliers and not drop them. While dropping the outlier can allow for a more general solution to approach mental health by focusing on the now more cohesive main clusters. The downside is that this country will be ignored in our analysis, when they might need to. Another benefit of dropping the outlier is that it could allow for our clustering metrics and cluster-sorted similarity matrix to be stronger. However, in the context of our research, we believe the downsides outweigh the benefits, and it's important to retain the country in our clustering analysis.
+In the context of improving mental health awareness, we believe that it is best to keep the identified outliers and not drop them. While dropping the outlier can allow for a more general solution to approach mental health by focusing on the now more cohesive main clusters, the downside is that this country will be ignored in our analysis when it may still need intervention. Another benefit of dropping the outlier is that it could allow for our clustering metrics and cluster-sorted similarity matrix to be stronger. However, in the context of our research, we believe the downsides outweigh the benefits, and it is important to retain these countries in our clustering analysis.
 
 ### 3.2 Noise Consideration and Identification
 """)
@@ -312,7 +312,7 @@ for min_samples_val in [2, 3, 4]:
     plt.close()
 
 st.write("""
-To determine noise, we first scaled the dataset then used DBSCAN with varying epsilon and minpts values and examined the number of clusters, noise points, and average silhouette score performance. Moreover, DBSCAN is effective as it does not force our countries into a cluster, but to defined as noise points based on their euclidean distance to other clusters.
+To determine noise, we first scaled the dataset then used DBSCAN with varying epsilon and minpts values and examined the number of clusters, noise points, and average silhouette score performance. DBSCAN is effective here as it does not force countries into a cluster, but instead labels them as noise points based on their Euclidean distance to other clusters.
 
 Importantly, as epsilon increased, the number of noise points decreased and the number of clusters decreased. This indicates that DBSCAN is likely classifying our outlier countries (Greenland, New Zealand) as noise, but as epsilon increases and the tolerance for grouping countries increases, we can observe these countries fitting into a broader cluster definition.
 
@@ -331,7 +331,7 @@ Beyond basic data cleaning, the following steps as aforementioned were deemed su
 st.write("""
 # 4. Basic Descriptive Analytics
 
-## 4.1 Boxplot Analysis
+## 4.1 Correlation Matrix
 """)
 
 code = """corr_mat = df_model.corr()
@@ -350,7 +350,7 @@ st.pyplot(fig)
 plt.close()
 
 st.write("""
-Here, we observe that Bipolar Disorder and Eating Disorders, Schizophrenia and Eating Disorders, and Anxiety Disorders and Eating Disorders all have high positive relationships. On the other hand, no two variables have an extremely negative covariance relationship. Generally, we can observe various disorders are positively correlated with one another, meaning that the prevalence of mental health disorders may tend to co-occur across countries.
+Here, we observe that Bipolar Disorder and Eating Disorders, Schizophrenia and Eating Disorders, and Anxiety Disorders and Eating Disorders all have high positive relationships. On the other hand, no two variables have an extremely negative covariance relationship. Generally, we can observe that various disorders are positively correlated with one another, meaning that the prevalence of one mental health disorder tends to co-occur with higher prevalence of others across countries.
 
 ## 4.2 Summary Statistics Analysis
 """)
@@ -363,7 +363,7 @@ code = """df_use['Region'].value_counts()"""
 st.code(code, language="python")
 st.write(df_use['Region'].value_counts())
 
-st.write("We observe that the most common regions are Western Asia, Eastern Africa, and Western Africa. Importantly, these continents contain numerous countries, which may skew our data analysis as we didn't assign weights to adequately represent prevalence across all regions.")
+st.write("We observe that the most common regions are Western Asia, Eastern Africa, and Western Africa. Importantly, these regions contain numerous countries, which may skew our data analysis as we did not assign weights to adequately represent prevalence across all regions.")
 
 
 # ── Section 5: Scaling Decisions ─────────────────────────────────────────────
@@ -450,7 +450,7 @@ ax.set_title('Representative t-SNE Plot: Perplexity = 50, Random State = 77')
 st.pyplot(fig)
 plt.close()
 
-st.write("Across all of the t-SNE plots, the dataset appears to be clusterable. While the exact spacing between groups changes from plot to plot, the overall structure is fairly stable, which gives us confidence that the mental health dataset contains real underlying clustering structure. Because of this, we believe the data is clusterable. The suggested number of clusters shows 6-7 clusters within the t-SNE plots.")
+st.write("Across all of the t-SNE plots, the dataset appears to be clusterable. While the exact spacing between groups changes from plot to plot, the overall structure is fairly stable, which gives us confidence that the mental health dataset contains real underlying clustering structure. Because of this, we believe the data is clusterable. The suggested number of clusters is 6 to 7 across the t-SNE plots.")
 
 code = """for var in ['Schizophrenia (%)',
             'Bipolar disorder (%)',
@@ -498,17 +498,17 @@ We chose k-Means as our first clustering algorithm based on our previous analyse
 
 First, k-Means produces interpretable cluster centroids, which are useful for the kind of group-level summaries our motivation needs. Each cluster's centroid is a vector of seven disorder rates that represents the "typical" mental health profile of the countries in that cluster. So once the clustering is complete, we can directly compare cluster centroids to describe what makes each group of countries unique.
 
-Second, after standardizing the data in Section 5, the mental health dataset is now approximately continuous and symmetric for several features. K-Means assumes approximately spherical clusters with similar spread, and while the t-SNE plots show some stretching, the broad structure appears round enough for k-Means to be a reasonable first pass.
+Second, after standardizing the data in Section 5, the mental health dataset is now approximately continuous and symmetric for several features. K-Means assumes approximately spherical clusters with similar spread, and while the t-SNE plots show some stretching, the broad structure appears round enough for k-Means to be a reasonable first approach.
 
 Third, the t-SNE plot from Section 6 suggests about six to seven groups. K-Means can target a specific k, which makes it easy to test a small range of values (k=6 through k=9) and compare results using the elbow method, silhouette scores, and t-SNE corroboration.
 
 ## 7.2 Algorithm #2: Hierarchical Agglomerative Clustering (Complete Linkage)
 
-For our second algorithm, we choose Hierarchical Agglomerative Clustering with Complete Linkage. Our t-SNE plot suggests the presence of slightly stretched clusters alongside clusters that contain very isolated points which are separated from bigger main clusters.
+For our second algorithm, we choose Hierarchical Agglomerative Clustering with Complete Linkage. Our t-SNE plot suggests the presence of slightly stretched clusters alongside clusters that contain very isolated points which are separated from the larger main clusters.
 
-Together, the roughly spherical shape of the clusters in the t-SNE plot suggests that HAC with Complete Linkage is a strong candidate for our analysis. Complete Linkage merges clusters based on the maximum distance between any two points across two clusters. This leads to more compact and spherical clusters compared to single linkage, which tends to chain and Average Linkage which produces clusters of intermediate compactness. Together, this linkage strategy is stronger for detecting outliers, especially in our dataset which contains potential noise points.
+Together, the roughly spherical shape of the clusters in the t-SNE plot suggests that HAC with Complete Linkage is a strong candidate for our analysis. Complete Linkage merges clusters based on the maximum distance between any two points across two clusters. This leads to more compact and spherical clusters compared to Single Linkage, which tends to chain, and Average Linkage, which produces clusters of intermediate compactness. This linkage strategy is therefore stronger for detecting outliers, particularly in a dataset such as ours which contains potential noise points.
 
-Additionally, HAC is deterministic and does not require a random seed, which means results are reproducible across runs without specifying a random state. Furthermore, the dendrogram produced by HAC can be useful for directly observing the hierarchical relationship between countries and clusters, which can be useful for understanding how the countries are related to one another.
+Additionally, HAC is deterministic and does not require a random seed, which means results are reproducible across runs without specifying a random state. Furthermore, the dendrogram produced by HAC can be useful for directly observing the hierarchical relationship between countries and clusters, which aids in understanding how countries relate to one another.
 """)
 
 
@@ -581,7 +581,7 @@ ax.set_title('Average Silhouette Scores for k-Means')
 st.pyplot(fig)
 plt.close()
 
-st.write("The average silhouette score plot shows that several values of k could work, with the strongest scores occurring in the range around k=6 through k=9. We do not want to use only the silhouette score data, but we should instead compare the silhouette scores with the elbow plot and the t-SNE plots. We see that the average silhouette score plot most strongly suggests about k=7 clusters.")
+st.write("The average silhouette score plot shows that several values of k could work, with the strongest scores occurring in the range around k=6 through k=9. We should not rely on the silhouette score alone, but instead compare it with the elbow plot and the t-SNE plots. Together, the evidence most strongly suggests about k=7 clusters.")
 
 st.write("### 8.3 t-SNE Corroboration Plots")
 
@@ -608,7 +608,7 @@ for k in [6, 7, 8, 9]:
     st.pyplot(fig)
     plt.close()
 
-st.write("To compare candidate k-means clusterings with the structure suggested by the t-SNE plots, we examined k=6,7,8, and 9. Among these, the clustering with k=7 had the strongest corroboration with the representative t-SNE plot. The k=7 solution aligns well with the visually separated groups, while smaller values like as k=6 appear to merge groups that look distinct and should not be joined.")
+st.write("To compare candidate k-means clusterings with the structure suggested by the t-SNE plots, we examined k=6, 7, 8, and 9. Among these, the clustering with k=7 had the strongest corroboration with the representative t-SNE plot. The k=7 solution aligns well with the visually separated groups, while smaller values such as k=6 appear to merge groups that look distinct and should not be joined.")
 
 st.write("### 8.4 Cluster-Sorted Similarity Matrix for K-Means")
 
@@ -681,11 +681,11 @@ for var in ['Schizophrenia (%)',
     plt.close()
 
 st.write("""
-The above boxplots are used to add more depth of understanding as to the composition of each cluster in context of the data.
+The above boxplots add depth to our understanding of the composition of each cluster in the context of the data.
 
 ### 8.6 Outlier Handling Check
 
-Earlier sections suggested that the dataset contains outliers and some noise-like countries, including countries such as New Zealand and Greenland. But, in the context of our research goal, we decided not to drop these countries because they may represent unique mental health profiles that could still be relevant. While k-Means ideal data properties don't include outliers, the final clustering appears to place these countries into their own small cluster, which still allows us to identify their unique mental health profile.
+Earlier sections suggested that the dataset contains outliers and some noise-like countries, including New Zealand and Greenland. In the context of our research goal, we decided not to drop these countries because they may represent unique mental health profiles that could still be relevant. While k-Means ideal data properties do not include outliers, the final clustering appears to place these countries into their own small cluster, which still allows us to identify their unique mental health profiles.
 
 ### 8.7 Best Clustering Selection and Final Results Presentation for K-Means
 """)
@@ -724,7 +724,7 @@ st.write("""
 
 Although we decide on HAC Complete Linkage for algorithm 2, we include all other types of HAC (excluding Single Linkage due to poor feature fit) for pairwise analysis.
 
-### 9.1 Silhouette Score for HAC algorithm type (Complete, Average, Ward)
+### 9.1 Silhouette Score for HAC Algorithm Type (Complete, Average, Ward)
 """)
 
 code = """for i in ['complete', 'average', 'ward']:
@@ -758,7 +758,7 @@ for i in ['complete', 'average', 'ward']:
     plt.close()
 
 st.write("""
-For Complete and Average Linkage functions, we observe the highest average silhouette score when k=2. Our highest average silhouette scorings for both average and complete occur early, while our highest average silhouette scoring for Ward's Linkage appears at k=10. This does not show strong corroboration with our suggested number of clusters, given from our t-SNE analysis in Section 3.
+For Complete and Average Linkage, we observe the highest average silhouette score when k=2. The highest average silhouette scores for both Average and Complete Linkage occur early, while the highest average silhouette score for Ward's Linkage appears at k=10. This does not show strong corroboration with our suggested number of clusters from the t-SNE analysis in Section 6.
 
 ### 9.2 Test for Natural Number of Clusters: Merge Distance vs. k
 
@@ -784,7 +784,7 @@ ax.legend()
 st.pyplot(fig)
 plt.close()
 
-st.write("Complete linkage is nearly flat. Every merge costs about the same from k=12 down to k=4, with slightly elevated tilt k = 2 to 4. Together, this implies that the elbow plot doesn't contain a strong indicator for a clear ideal number of clusters. However, we can observe a higher silhouette plot plateau at k=6,7,8.")
+st.write("Complete linkage is nearly flat. Every merge costs about the same from k=12 down to k=4, with a slightly elevated slope from k=2 to k=4. Together, this implies that the merge distance plot does not contain a strong indicator for a clear ideal number of clusters. However, we can observe a higher silhouette plateau at k=6, 7, and 8.")
 
 code = """for i in [\"complete\", \"average\", \"ward\"]:
   dm = pdist(df_scaled, metric='euclidean')
@@ -811,7 +811,7 @@ for i in ["complete", "average", "ward"]:
 
 st.write("The Complete Linkage dendrogram at distance 5.9 identifies seven colored sub-trees, highlighting a significant gap between 6.4 and 9.6 that clearly separates outliers like New Zealand and Greenland from the main data body.")
 
-st.write("### 9.3 t-SNE for Inherent Clusters\n\nWe plot the representative t-SNE plot from Section 6 by complete-linkage labels at several candidate k values.")
+st.write("### 9.3 t-SNE for Inherent Clusters\n\nWe plot the representative t-SNE plot from Section 6 color-coded by complete-linkage labels at several candidate k values.")
 
 code = """Z_complete = linkage(df_scaled, method= 'complete')
 for k in [4, 5, 6, 7, 8, 9]:
@@ -840,7 +840,7 @@ for k in [4, 5, 6, 7, 8, 9]:
 st.write("""
 ### 9.4 Cluster-Sorted Similarity Matrices
 
-We compute Euclidean distance matrices sorted by complete-linkage labels at several candidate k values. Once again, a well-separated, well-cohesive clustering produces a block-diagonal pattern: dark squares on the diagonal (low intra-cluster distances) and lighter regions off-diagonal (higher inter-cluster distances) in an ideal clustering.
+We compute Euclidean distance matrices sorted by complete-linkage labels at several candidate k values. A well-separated, well-cohesive clustering produces a block-diagonal pattern: dark squares on the diagonal (low intra-cluster distances) and lighter regions off-diagonal (higher inter-cluster distances).
 """)
 
 code = """dist_mat = pairwise_distances(df_scaled, metric='euclidean')
@@ -873,11 +873,11 @@ for k in [5, 6, 7, 8]:
     plt.close()
 
 st.write("""
-At k=5, we observe that the bottom right quadrant is one large sparse block, this larger generalization of the data points may be obscuring clustering substructure. At k=7, the bottom right quadrant resolves into two visible blocks, with darker coloring indicating stronger separation.
+At k=5, the bottom right quadrant is one large sparse block; this broader generalization may be obscuring clustering substructure. At k=7, the bottom right quadrant resolves into two visible blocks, with darker coloring indicating stronger intra-cluster cohesion.
 
 ## 9.5 Outlier Handling Check
 
-In 3.1 we committed to retaining New Zealand and Greenland as cluster members rather than dropping them or isolating them as singletons. We verify here that the chosen clustering preserves this behavior.
+In Section 3.1 we committed to retaining New Zealand and Greenland as cluster members rather than dropping them or isolating them as singletons. We verify here that the chosen clustering preserves this behavior.
 """)
 
 code = """Z_best = linkage(df_scaled, method= 'complete')
@@ -902,7 +902,7 @@ st.write("Size of each cluster:")
 st.write(df_check['hier_cluster'].value_counts().sort_index())
 
 st.write("""
-The outliers are not in singleton clusters, but they're in very small clusters. New Zealand sits in a cluster of 2 (cluster 1), and Greenland sits in a cluster of 3 (cluster 2). Both clusters together account for just 5 countries, which aligns with our suggested clustering in Section 3 using Single Linkage.
+The outliers are not in singleton clusters, but they are in very small clusters. New Zealand sits in a cluster of 2 (cluster 1), and Greenland sits in a cluster of 3 (cluster 2). Both clusters together account for just 5 countries, which aligns with our suggested clustering in Section 3 using Single Linkage.
 
 ## 9.6 Best Clustering Selection and Final Results Presentation
 
@@ -937,7 +937,7 @@ Based on the elbow plot, silhouette scores, t-SNE corroboration, and the similar
 
 ## 9.7 Technique Shortcomings
 
-Unfortunately, our clustering algorithm had poor corroboration between determining the number of clusters. Our highest average silhouette plots suggested a far smaller number of clusters than our dendrogram analysis. However, it's important to recognize that the highest average silhouette score does not always indicate the method that identifies the inherent clusters. Also, our cluster sorted matrix does not show strong block structure, indicating that the clusters may not be well separated.
+Unfortunately, our clustering algorithm showed poor corroboration when determining the number of clusters. The highest average silhouette scores suggested a far smaller number of clusters than the dendrogram analysis. However, it is important to recognize that the highest average silhouette score does not always indicate the method that best identifies the inherent clusters. Additionally, our cluster-sorted similarity matrix does not show strong block structure, indicating that the clusters may not be well separated.
 """)
 
 
@@ -983,15 +983,15 @@ st.pyplot(fig)
 plt.close()
 
 st.write("""
-The ARI between k-Means and HAC at k=7 is ~0.337, which indicates slight agreement between both clustering algorithms. This indication may imply that there is some general agreement on data shape, but plentiful disagreement on cluster assortments.
+The ARI between k-Means and HAC at k=7 is approximately 0.337, which indicates slight agreement between the two clustering algorithms. This suggests some general agreement on the overall data shape, but considerable disagreement on specific cluster assignments.
 
 ## 10.2 Best Clustering Overall
 
-Across both algorithms, k-Means with k=7 provides the strongest evidence we've identified the inherent clusters, with one important caveat about outlier handling. Evidence of corroboration with the t-SNE plot is more visible, k-Means' cluster labels align with the t-SNE data structures more closely compared to HAC's.
+Across both algorithms, k-Means with k=7 provides the strongest evidence that we have identified the inherent clusters, with one important caveat regarding outlier handling. The corroboration with the t-SNE plot is more visible for k-Means, as its cluster labels align more closely with the t-SNE data structures compared to HAC.
 
 ## 10.3 Different Insights From Each Algorithm
 
-For our analysis, k-Means provides valuable insights regarding the larger cloud of data observed in our t-SNE plot. Specifically, the centered cloud of data is labeled into separate clusters, which can provide valuable information regarding each group of countries. Compared to HAC with Complete Linkage, we can analyze differences between the centered graph clusters and produce solutions based on the cluster profiles. On the other hand, HAC Complete Linkage identifies the outliers more distinctly, which can allow for an analysis of specific countries with unique mental health profiles.
+For our analysis, k-Means provides valuable insights regarding the larger cloud of data observed in our t-SNE plot. Specifically, the central cloud of data is divided into separate clusters, which can provide valuable information regarding each group of countries. Compared to HAC with Complete Linkage, we can analyze differences between the central clusters and produce solutions based on the cluster profiles. On the other hand, HAC Complete Linkage identifies the outliers more distinctly, which allows for a more focused analysis of countries with unique mental health profiles.
 
 ## 10.4 Separation and Sparsity (using k-Means similarity matrix)
 """)
@@ -1045,7 +1045,7 @@ st.pyplot(fig)
 plt.close()
 
 st.write("""
-For our k-Means similarity matrix, we observe several distinct diagonal blocks representing clusters. These clusters are mostly dark blue representing strong inter-cluster distances. However, in the top left quadrant representing the large cloud of data, we observe that the intra clusters are quite blue colored, indicating that the intra-cluster distance is high.
+For our k-Means similarity matrix, we observe several distinct diagonal blocks representing clusters. These clusters are mostly dark blue, indicating strong inter-cluster distances. However, in the top left quadrant representing the large central cloud of data, the intra-cluster distances are also quite high, suggesting weaker cohesion within those clusters.
 
 ## 10.5 Attribute Descriptions — Profile of Each Cluster
 """)
@@ -1062,8 +1062,8 @@ plt.show()
 plt.figure(figsize=(10, 4))
 region_ct = pd.crosstab(df_combo['kmeans_cluster'], df_combo['Region'])
 region_ct.plot(kind='bar', ax=plt.gca())
-plt.title('Region composition of each k-Means clusters')
-plt.xlabel('k-Means linkage cluster')
+plt.title('Region composition of each k-Means cluster')
+plt.xlabel('k-Means cluster')
 plt.ylabel('Number of countries')
 plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
 plt.tight_layout()
@@ -1095,8 +1095,8 @@ plt.close()
 fig, ax = plt.subplots(figsize=(10, 4))
 region_ct = pd.crosstab(df_combo['kmeans_cluster'], df_combo['Region'])
 region_ct.plot(kind='bar', ax=ax)
-ax.set_title('Region composition of each k-Means clusters')
-ax.set_xlabel('k-Means linkage cluster')
+ax.set_title('Region composition of each k-Means cluster')
+ax.set_xlabel('k-Means cluster')
 ax.set_ylabel('Number of countries')
 ax.legend(bbox_to_anchor=(1, 1), loc='upper left')
 plt.tight_layout()
@@ -1127,8 +1127,8 @@ plt.show()
 plt.figure(figsize=(10, 4))
 region_ct = pd.crosstab(df_combo['predicted_cluster'], df_combo['Region'])
 region_ct.plot(kind='bar', ax=plt.gca())
-plt.title('Region composition of each HAC complete linkage cluster')
-plt.xlabel('HAC complete linkage cluster')
+plt.title('Region composition of each HAC Complete Linkage cluster')
+plt.xlabel('HAC Complete Linkage cluster')
 plt.ylabel('Number of countries')
 plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
 plt.tight_layout()
@@ -1160,8 +1160,8 @@ plt.close()
 fig, ax = plt.subplots(figsize=(10, 4))
 region_ct = pd.crosstab(df_combo['predicted_cluster'], df_combo['Region'])
 region_ct.plot(kind='bar', ax=ax)
-ax.set_title('Region composition of each HAC complete linkage cluster')
-ax.set_xlabel('HAC complete linkage cluster')
+ax.set_title('Region composition of each HAC Complete Linkage cluster')
+ax.set_xlabel('HAC Complete Linkage cluster')
 ax.set_ylabel('Number of countries')
 ax.legend(bbox_to_anchor=(1, 1), loc='upper left')
 plt.tight_layout()
@@ -1181,11 +1181,11 @@ st.pyplot(fig)
 plt.close()
 
 st.write("""
-For k-Means, we observe on the heatmap that Clusters 6 and 3 represent groups with higher overall rates across conditions, with Cluster 6 showing peaks in schizophrenia, eating disorders, anxiety, and drug use mental health disorders. Conversely, Cluster 2 captures a group with relatively low rates across all mental health disorders. Cluster 4 contains a semi-high alcohol use disorder rate, and Cluster 5 for drug use disorders.
+For k-Means, we observe on the heatmap that Clusters 6 and 3 represent groups with higher overall rates across conditions, with Cluster 6 showing peaks in schizophrenia, eating disorders, anxiety, and drug use disorders. Conversely, Cluster 2 captures a group with relatively low rates across all mental health disorders. Cluster 4 contains an elevated alcohol use disorder rate, and Cluster 5 is notable for drug use disorders.
 
-For HAC Complete Linkage, Clusters 1 and 2 represent groups with a high overall mean disorder rates, with Cluster 1 showing exceptionally high rates across almost all categories except alcohol use. Cluster 2 peaks sharply in drug use disorders. Conversely, Cluster 4 represents a group with very low disorder rates across every single disorder, while Cluster 3 isolates individuals with extremely high alcohol use disorders.
+For HAC Complete Linkage, Clusters 1 and 2 represent groups with high overall mean disorder rates, with Cluster 1 showing exceptionally high rates across almost all categories except alcohol use. Cluster 2 peaks sharply in drug use disorders. Conversely, Cluster 4 represents a group with very low disorder rates across every disorder, while Cluster 3 is distinguished by an extremely high alcohol use disorder rate.
 
-In our bar plots, we observe the frequency of regions across the various clustering labels. According to our plot, we don't observe a clear relationship between region and mental health disorder profiles.
+In our bar plots, we observe the frequency of regions across the various clustering labels. According to our plots, we do not observe a clear relationship between region and mental health disorder profiles.
 """)
 
 
@@ -1194,11 +1194,11 @@ In our bar plots, we observe the frequency of regions across the various cluster
 st.write("""
 # 11. Conclusion
 
-In our analysis, we discovered several associations between clusters of countries and associated mental health disorders. Based on our analysis, it is beneficial to create broad mental health solutions based on our unsupervised learning analysis. Through k-Means, we observed clustering of the larger group of countries, with some clusters sporting higher than average mean values for certain mental health disorders such as schizophrenia. This finding can be useful for health organizations, who for example may construct solutions that focus slightly more on targeting schizophrenia among other disorders. Moreover, for countries that show low rates across all boxplots, it may be beneficial to adapt the countries approach towards mental health into their own solutions. On the other hand, countries which hope to target unique mental health profiles may observe our clustering labels for HAC Complete Linkage, and observe countries related to our outliers.
+In our analysis, we discovered several associations between clusters of countries and associated mental health disorders. Based on our analysis, it is beneficial to create broad mental health solutions informed by our unsupervised learning results. Through k-Means, we observed clustering of the larger group of countries, with some clusters showing higher than average mean values for certain mental health disorders such as schizophrenia. This finding can be useful for health organizations, who may construct solutions that focus slightly more on targeting schizophrenia among other disorders. Moreover, for countries that show low rates across all disorders, it may be beneficial to study those countries' approaches to mental health and adapt their strategies elsewhere. On the other hand, countries which display unique mental health profiles may be better understood through our HAC Complete Linkage clustering labels, which isolate outlier countries alongside a small number of similar nations.
 
-While our unsupervised analysis was successful, we did encounter several shortcomings during our analysis. Foremost, the presence of outliers in the dataset worsened the performance of our clustering algorithms, and may have obscured true relationships in the data. Also, our clusters themselves didn't have exceptionally strong associations between clusters, or agreement amongst algorithms. Our Adjusted Rand Score was low, and our mental health profile heatmaps in Section 10 didn't indicate clear patterns amongst our cluster labels.
+While our unsupervised analysis was successful, we did encounter several shortcomings. Foremost, the presence of outliers in the dataset worsened the performance of our clustering algorithms and may have obscured true relationships in the data. Additionally, our clusters did not show exceptionally strong inter-cluster separation or agreement across algorithms. Our Adjusted Rand Score was low, and our mental health profile heatmaps in Section 10 did not indicate clear patterns among the cluster labels.
 
-In the future, it may be beneficial to minimize the number of attributes, and ensure a hard partitioning to create more general solutions for the world health organizations research goals. Additionally, it's possible that more recent data may indicate different trends than our current analysis using data from 2017.
+In the future, it may be beneficial to reduce the number of attributes and ensure a hard partitioning to create more general solutions for world health organizations' research goals. By reducing the number of attributes, more specific associations between clusters may emerge. Additionally, more recent data may reveal different trends than those identified in our 2017 analysis, so it is important to recognize the temporal limitations of our findings.
 
 
 # References
@@ -1214,6 +1214,5 @@ Amit. (n.d.). Mental health depression disorder data [Data set]. data.world. htt
 
 Cosgrove, L. (2025). Addressing the global mental health crisis: How a human rights approach can help end the search for pharmaceutical magic bullets. Health and Human Rights Journal, 27(1). https://pmc.ncbi.nlm.nih.gov/articles/PMC12799051/
 """)
-
 
 
